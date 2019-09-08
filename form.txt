@@ -1,0 +1,12 @@
+    <form class="uk-grid-small" uk-grid>
+                    <div class="uk-width-1-1@s uk-search uk-search-default">
+                        <span class="uk-search-icon-flip " uk-search-icon></span>
+                        <input class="uk-input uk-border-rounded uk-search-inpput" type="search" placeholder="Location">
+                    </div>
+                    <div class="uk-width-1-2@s">
+                        <input class="uk-input uk-border-rounded" data-uktype="text" placeholder="Start-trip">
+                    </div>
+                    <div class="uk-width-1-2@s">
+                        <input class="uk-input uk-border-rounded" type="calender" placeholder="End-trip">
+                    </div>
+                </form>
