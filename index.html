@@ -1,121 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Rental</title>
-   <link rel="icon"  href="favicon.ico">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css" />
-   <!--<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Satisfy&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css" />
+    <!--<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Satisfy&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
    -->
-   <link href="https://fonts.googleapis.com/css?family=Pacifico|Permanent+Marker|Satisfy&display=swap" rel="stylesheet"> 
-   <!-- UIkit JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit-icons.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Permanent+Marker|Satisfy&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit-icons.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 </head>
+
 <body>
-        <div class="uk-position-relative uk-background-cover uk-height-viewport "style="background-image: url(img/bg3.jpg);" uk-img>
-            
-               <div class="uk-position-top">
-                        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar >
-                        <div class="uk-navbar-left">
-                            <ul class="uk-navbar-nav">
-                                <li ><a href="#Home"><img src="logo.png" width="50px" height="50px"></a></li>
-                            </ul>
-                        </div>
-                        <div class="uk-navbar-right uk-visible@m">
-                            <ul class="uk-navbar-nav ">
-                              <li><a href="#">Page#1</a></li>
-                             <li><a href="#">Page#2</a></li>
-                             <li><a href="#">Page#3</a></li>
-                             <li><a href="#">Login</a></li>    
-                            <li> <a href="#">Sign-up</a></li>
-                           
-                        </ul>
-                        </div>
-                        <li class="uk-visible@xs uk-hidden@m uk-navbar-right"><a class="uk-navbar-toggle "href="#offcanvas" uk-navbar-toggle-icon uk-toggle></a></li>
-                    </nav>
-                </div>
-            <div id="offcanvas"   uk-offcanvas="flip:true">
-                <div class="uk-offcanvas-bar uk-flex uk-flex-column">
-                    <button class="uk-offcanvas-close" type="button" uk-close></button>
-                    <ul class="uk-nav uk-nav-default ">
-                            <li><a href="#">Page#1</a></li>
-                           <li><a href="#">Page#2</a></li>
-                           <li><a href="#">Page#3</a></li>
-                           <li><a href="#">Login</a></li>    
-                          <li> <a href="#">Sign-up</a></li>
-                </div>
+    <div class="uk-position-relative uk-background-cover uk-height-viewport "
+        style="background-image: url(img/bg3.jpg);" uk-img>
 
-            </div>
+        <div class="uk-position-top">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="#Home"><img src="logo.png" width="50px" height="50px"></a></li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right uk-visible@m">
+                    <ul class="uk-navbar-nav ">
+                        <li><a class="a" href="#">Page#1</a></li>
+                        <li><a href="#">Page#2</a></li>
+                        <li><a href="#">Page#3</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li> <a href="#">Sign-up</a></li>
 
-            <div class="uk-position-center">
-                <center><h1 style="font-family: 'Pacifico', cursive;;color:white;font-size:55px;">Rent.Ride.Relish</h1>
-                </center>
-                
-                <button class="uk-button uk-button-primary uk-border-rounded uk-button-medium uk-align-center uk-margin">Rent</button>
-            </div>
-    
+                    </ul>
+                </div>
+                <li class="uk-visible@xs uk-hidden@m uk-navbar-right"><a class="uk-navbar-toggle " href="#offcanvas"
+                        uk-navbar-toggle-icon uk-toggle></a></li>
+            </nav>
         </div>
-        <scetion class="uk-section uk-section-muted ">       
-                    <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top" >Our Priorities</h1>
-            <div class="uk-child-width-expand@s uk-text-center" uk-grid>
-                <div class="uk-card uk-margin-large-left uk-card-default uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
-                    <h3 class="uk-card-title uk-text-center">Safety</h3>
-                    <div class="uk-card-media-top">
-                                <img class="uk-border-circle" src="img/shield.png" alt="Safety" width="200" height="100">
-                        </div>
-                        <p>Content to be added</p>
-
-                    </div>
-               <div class="uk-card uk-card-default uk-margin-left uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
-                            <h3 class="uk-card-title uk-text-center">Quality</h3>
-                            
-                            <div class="uk-card-media-top">
-                                    <img class="uk-border-circle" src="img/quality.png " width="200" height="150"    alt="">
-                                </div>
-                            
-                                <p>Content to be added</p>
-        
-                 </div>
-               <div class="uk-card uk-card-default uk-margin-left  uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
-                                    <h3 class="uk-card-title uk-text-center">Verified Vendors</h3>
-                                    <div class="uk-card-media-top">
-                                            <img  src="img/protection.png" width="200" height="100"alt="">
-                                       
-                                        </div>
-                                        <p>Content to be added</p>
-                
-                   </div>
-                </div>
-        <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top" >Who Are We</h1>
-        <div  uk-grid>
-            <img  class="uk-margin-large-left" src="img/logo.png"uk-img>
-            <p class="uk-text"> Content to be added</p>
-        </div>            
-        <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top" >Contact-us</h1>
-        <div class="uk-align-left uk-margin-large-left" uk-grid>
-            <div class="uk-margin-large-top"> 
-                <p class="uk-text"><i class="uk-icon-button" style="background: black ;color:white" uk-icon="receiver"></i>  <span class="uk-h3">Phone:</span> Blaa-Blaa-Blaa </p>
+        <div id="offcanvas" uk-offcanvas="flip:true">
+            <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+                <ul class="uk-nav uk-nav-default ">
+                    <li><a href="#">Page#1</a></li>
+                    <li><a href="#">Page#2</a></li>
+                    <li><a href="#">Page#3</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li> <a href="#">Sign-up</a></li>
             </div>
-           <div >
-               <p class="uk-text"> <i class="uk-icon-button" style="background: black ;color:white" uk-icon="google-plus"></i>  <span class="uk-h3 ">E-mail :</span> primer@cs-go.com
+
+        </div>
+
+        <div class="uk-position-center">
+            <center>
+                <h1 style="font-family: 'Pacifico', cursive;;color:white;font-size:55px;">Rent.Ride.Relish</h1>
+            </center>
+
+            <form>
+
+                <div class="uk-width-1-1@s uk-search uk-search-default">
+                    <select class="uk-select uk-input uk-border-rounded " id="option">
+                        <option>Location</option>
+                        <option>Dehradoon</option>
+                    </select>
+
+                </div>
+                <!--XYZ-->
+                <div class="uk-width-1-1@s uk-margin-top">
+
+                    <input class="uk-input uk-border-rounded " id="demo">
+
+                </div>
+                <button type="button" class=" uk-button uk-button-primary uk-border-rounded uk-button-medium uk-align-center
+                    uk-margin" onclick="parameter()">Rent</button>
+            </form>
+        </div>
+
+    </div>
+    <scetion class="uk-section uk-section-muted ">
+        <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top">Our
+            Priorities</h1>
+        <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+            <div
+                class="uk-card uk-margin-large-left uk-card-default uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
+                <h3 class="uk-card-title uk-text-center">Safety</h3>
+                <div class="uk-card-media-top">
+                    <img class="uk-border-circle" src="img/shield.png" alt="Safety" width="200" height="100">
+                </div>
+                <p>your safety is our first priority, we provide you a ISI marked hemet during your ride</p>
+
+            </div>
+            <div
+                class="uk-card uk-card-default uk-margin-left uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
+                <h3 class="uk-card-title uk-text-center">Quality</h3>
+
+                <div class="uk-card-media-top">
+                    <img class="uk-border-circle" src="img/quality.png " width="200" height="150" alt="">
+                </div>
+
+                <p>we assure our quality by verifying bikes and vendors</p>
+
+            </div>
+            <div
+                class="uk-card uk-card-default uk-margin-left  uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
+                <h3 class="uk-card-title uk-text-center">Verified Vendors</h3>
+                <div class="uk-card-media-top">
+                    <img src="img/protection.png" width="200" height="100">
+
+                </div>
+                <p> we verify our vendor to assure our quality and provide you with only government authorized vendor
+                </p>
+
+            </div>
+        </div>
+        <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top">Who
+            Are We</h1>
+        <div uk-grid>
+            <img class="uk-margin-large-left" src="img/logo.png" uk-img>
+            <p class="uk-text"> Easy Bikes is a aggrigated bike rental platform that provide bikes with quality
+                assurance from verified vendors</p>
+        </div>
+        <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top">
+            Contact-us</h1>
+        <div class="uk-align-left uk-margin-large-left" uk-grid>
+            <div class="uk-margin-large-top">
+                <p class="uk-text"><i class="uk-icon-button" style="background: black ;color:white"
+                        uk-icon="receiver"></i> <span class="uk-h3">Phone:</span> Blaa-Blaa-Blaa </p>
+            </div>
+            <div>
+                <p class="uk-text"> <i class="uk-icon-button" style="background: black ;color:white"
+                        uk-icon="google-plus"></i> <span class="uk-h3 ">E-mail :</span> primer@cs-go.com
                 </p>
             </div>
         </div>
         <div class="uk-align-right uk-margin-large-right">
-            <div class="mapouter"><div class="gmap_canvas"><iframe width="400" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=dehradun&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/blog/20-off-discount-for-elegant-themes-divi-sale-coupon-code-2019/">elegant themse</a></div><style>.mapouter{position:relative;text-align:right;height:400px;width:400px;}.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:400px;}</style></div>
+            <div class="mapouter">
+                <div class="gmap_canvas"><iframe width="400" height="400" id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=dehradun&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
+                        href="https://www.embedgooglemap.net/blog/20-off-discount-for-elegant-themes-divi-sale-coupon-code-2019/">elegant
+                        themse</a></div>
+                <style>
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        height: 400px;
+                        width: 400px;
+                    }
+
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        height: 400px;
+                        width: 400px;
+                    }
+                </style>
+            </div>
         </div>
-        
-        </scetion>
-    
-<section class="Footer">
-    
-</section>
-      
+
+    </scetion>
+    <section class="footer">
+
+    </section>
 
 
 
+    <script>
+        $('#demo').daterangepicker({
+            "timePicker": true,
+            "alwaysShowCalendars": true,
+            "applyButtonClasses": "btn-secondary",
+            startDate: moment(),
+            endDate: moment().startOf('hour').add(24, 'hour'),
+            locale: {
+                format: 'DD/M/YY hh:00 A'
+            },
+            minDate: moment().startOf('hour'),
+            "opens": "center"
+        });
+
+
+        function parameter() {
+
+            let sd1 = $('#demo').val();
+            console.log(sd1);
+            console.log("inside");
+            var select = document.getElementById('option').value;
+            var queryString = "?location=" + select + "&" + "Details=" + sd1;
+            console.log("The value is here" + queryString);
+            var location1 = "rent.html" + queryString;
+            if (select == "Location") {
+                alert("Please Choose a Location")
+
+            }
+            else {
+                window.location.href = location1;
+
+            }
+        }
+    </script>
 </body>
-</html>     
+
+</html>

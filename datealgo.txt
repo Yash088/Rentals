@@ -1,0 +1,79 @@
+function SameDate(checkIn, checkOut, inTime, outTime, mode1, mode2) {
+            // SameDateData if on same daste we have to write 
+            // basically it is for time calulation
+            if (parseInt(checkIn) == parseInt(ckeckOut)) {
+                if (mode1 == mode2) {
+                    val = outTime - inTime;
+                }
+                else if (mode1 == "AM" && mode2 == "PM") {
+                    outTime = outTime + 12;
+                    val = outTime - inTime;
+                }
+                else if (mode1 == "PM" && mode2 == "AM") {
+                    //Code to be FOund
+                }
+            }
+        }
+        function differDate(checkIn, checkOut, inTime, outTime, mode1, mode2) {
+            if (parseInt(checkIn) == parseInt(checkOut) - 1) {
+
+            }
+
+        }
+
+
+
+
+
+let sd2 = sd3[1].split(" ");
+let checkIn = sd2[0];
+let checkOut = sd2[4];
+let inTime = parseInt(sd2[1]);
+let outTime = parseInt(sd2[5]);
+let mode1 = sd2[2];
+let mode2 = sd2[6];
+let start = sd2[0].split("/");
+let end = sd2[4].split("/");
+var startTime = moment("3:00 pm", "HH:mm a");
+var endTime = moment("5:00 am", "HH:mm a");
+var duration = moment.duration(endTime.diff(startTime));
+
+// calculate total duration
+
+// duration in hours
+var hours = parseInt(duration.asHours());
+console.log(hours);
+function SameDate(checkIn, checkOut, hours) {
+  if (parseInt(checkIn) == parseInt(checkOut)) {
+    alert("saem date" + hours);
+    return hours;
+  }
+  else if (parseint(checkIn) == parse(checkOut) - 1) {
+    alert(hours + "in +1 date");
+    return hours;
+  }
+  else {
+    let day = checkOut - checkIn;
+    alert("Days" + day + "hour" + hours);
+    return day, hours;
+  }
+
+
+}
+const sdate = parseInt(start[0]);
+const smonth = parseInt(start[1]);
+const syear = parseInt("20" + start[2]);
+const edate = parseInt(end[0]);
+const emonth = parseInt(end[1]);
+const eyear = parseInt("20" + start[2]);
+console.log(sdate, smonth, syear);
+const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+const firstDate = new Date(syear, smonth - 1, sdate);
+const secondDate = new Date(eyear, emonth - 1, edate);
+console.log(sd2);
+console.log(firstDate);
+console.log(secondDate);
+const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+console.log("total Days" + diffDays);
+
+
