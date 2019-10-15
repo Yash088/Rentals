@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> EasyBikes</title>
+  <link rel="icon" href="img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css" />
+  <!--<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Satisfy&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+   -->
+  <link rel="stylesheet" href="./style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Permanent+Marker|Satisfy&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  <!-- UIkit JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit-icons.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+</head>
+
+<body onload="fname()"> 
+  <div class="uk-position-top">
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+
+      <ul class="uk-navbar-nav">
+        <li class="uk-navbar-left@s"><a href="index.html"><img src="img/logo.png" width="50px" height="50px"></a></li>
+        <div class="uk-navbar-item uk-visible@m uk-margin-large-left">
+          <form>
+            <div class="uk-inline uk-form-width-large">
+              <select class=" uk-select uk-input uk-border-rounded " id="option">
+                <option>Location</option>
+                <option>Dehradoon</option>
+              </select>
+
+            </div>
+            <input class="uk-input uk-border-rounded uk-form-width-large" id="demo" readonly>
+            <button type="button"
+              class="uk-button uk-button-default uk-padding-small uk-padding-remove-top uk-padding-remove-bottom"
+              style="background:#1e90ff; color: white;" onclick="parameter()"><span uk-icon="icon: search"
+                class="icon"></span></button>
+          </form>
+        </div>
+
+
+      </ul>
+      <div class="uk-navbar-right">
+
+        <ul class="uk-navbar-nav">
+          <li>
+
+            <button uk-toggle="target: #md" style="border:1px transparent; "
+              class=" uk-navbar-toggle uk-hidden@m uk-visible@xs uk-button-default  " type="button"><span
+                uk-icon="icon: settings"></span>
+            </button></li>
+            <li><button uk-toggle="target: #mdtu" style="border:1px transparent; "
+            class=" uk-navbar-toggle uk-hidden@m uk-visible@xs uk-button-default  " type="button"><span
+              uk-icon="icon: menu"></span>
+          </button>
+
+          </li>
+        </ul>
+      </div>
+      <div id="mdtu"  class=" uk-hidden@m" uk-offcanvas>
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <div class="uk-offcanvas-bar " >
+    <ul style="list-style-type: none;">
+        <li><a class="b" style="color:white" href="userauth.html"  id="name5">Login/sign-up</a></li>
+        <li><a class="b" onclick="bookings()"  id="name7">My Bookings</a></li> 
+        <!-- <li><a class="b" style="display:none" id="username"></a></li> -->
+        <li><a class="b" href="index.html" style="display:none; "  onclick="logout()"id="name8">logout</a></li>
+    </ul>
+</div>
+    </div>
+      <div id="md" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+          <form>
+            <div class="uk-inline uk-form-width-large">
+              <select class=" uk-select uk-input uk-border-rounded " id="option1">
+                <option>Location</option>
+                <option>Dehradoon</option>
+              </select>
+
+            </div>
+            <input class="uk-input uk-border-rounded uk-form-width-large" id="ui" readonly>
+            <script>
+              $('#ui').daterangepicker({
+                "timePicker": true,
+                "alwaysShowCalendars": true,
+                "applyButtonClasses": "btn-secondary",
+                startDate: moment(),
+                endDate: moment().startOf('hour').add(24, 'hour'),
+                locale: {
+                  format: 'DD/M/YY hh:00 A'
+                },
+                minDate: moment().startOf('hour'),
+                "opens": "center"
+              });
+
+
+            </script>
+
+
+            <p class="uk-text-right">
+              <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+              <button class="uk-button uk-button-primary" onclick="parameter1()" type="button">Rent</button>
+            </p>
+        </div>
+
+
+      </div>
+
+
+    </nav>
+  </div>
+
+
+  <div class="uk-section uk-margin-large-top">
+    <div class=" uk-text-center uk-grid-match" id="yo1" uk-grid>
+
+    </div>
+  </div>
+  <div class="uk-section uk-section-secondary uk-light">
+      <div>
+          <div class="uk-align-left">
+              <h3 class="uk-margin-left">Easy Bikes</h3>
+          </div>
+          <div class="uk-align-right">
+              <span class="uk-margin-small-right uk-icon-button" uk-icon="mail"></span>
+              <span class="uk-margin-small-right uk-icon-button" uk-icon="google"></span>
+              <span class="uk-margin-small-right uk-icon-button" uk-icon="linkedin"></span>
+              <span class="uk-margin-small-right uk-icon-button" uk-icon="instagram"></span>
+              <span class="uk-margin-small-right uk-icon-button" uk-icon="twitter"></span>
+              <span class="uk-margin-small-right uk-icon-button" uk-icon="facebook"></span>
+          </div>
+
+      </div>
+  </div>
+  <!-- <div class="uk-modal" id="booking_login">
+
+  </div> -->
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+
+  <script>
+ 
+     var firebaseConfig = {
+      apiKey: "AIzaSyB9IY9MVXJzgjBHZ-JegddvmJBU18xtB8U",
+      authDomain: "rentalbike-115b4.firebaseapp.com",
+      databaseURL: "https://rentalbike-115b4.firebaseio.com",
+      projectId: "rentalbike-115b4",
+      storageBucket: "rentalbike-115b4.appspot.com",
+      messagingSenderId: "240683021274",
+      appId: "1:240683021274:web:89ebd615402c9e525bc6e3"
+    };
+
+    // Initialize Firebase -->
+    firebase.initializeApp(firebaseConfig);
+
+    $('#demo').daterangepicker({
+      "timePicker": true,
+      "alwaysShowCalendars": true,
+      "applyButtonClasses": "btn-secondary",
+      startDate: moment(),
+      endDate: moment().startOf('hour').add(24, 'hour'),
+      locale: {
+        format: 'DD/M/YY hh:00 A'
+      },
+      minDate: moment().startOf('hour'),
+      "opens": "center"
+    });
+    function fname() {
+      if (localStorage.getItem('name')) {
+                
+        let nme = localStorage.getItem('name');
+                document.getElementById('name5').style.display='none';
+                
+                // document.getElementById('username').style.display='inline';
+                // document.getElementById('username').innerHTML = '<span  class=" uk-text-danger uk-text bold" uk-icon="icon: user;"  ratio: 1.5"></span>'+nme; 
+                document.getElementById('name7').style.display='inline';
+                document.getElementById('name8').style.display='inline';
+                
+                console.log("here2345");
+
+            } 
+            else {
+                console.log("here");
+                document.getElementById('name5').innerHTML = 'Login/Sign-up'; }
+              }
+              
+              function parameter() {
+                console.log(document.getElementById('demo').value);
+
+      let sd1 = $('#demo').val();
+
+      var select1 = document.getElementById('option').value;
+      var queryString = "?location=" + select1 + "&" + "Details=" + sd1;
+      console.log("The value is here" + queryString);
+      var location1 = "rent.html" + queryString;
+      
+      if (select1 !== "Location") {
+        console.log("yha hu bsdkee");
+        
+         window.location.href = location1;
+
+      }
+        else {
+          alert("Please Choose a Location") 
+        
+      }
+    }
+    function parameter1() {
+
+      let sd1 = $('#ui').val();
+
+      var select1 = document.getElementById('option1').value;
+      var queryString = "?location=" + select1 + "&" + "Details=" + sd1;
+      console.log("The value is here" + queryString);
+      var location1 = "rent.html" + queryString;
+      
+      if (select1 !== "Location") {
+        console.log("yha hu bsdkee");
+        
+        window.location.href = location1;
+
+      }
+        else {
+          alert("Please Choose a Location") 
+        
+      }
+    }
+    function bookings(){
+                            
+                            if(!localStorage.getItem('name')){
+                                localStorage.setItem("href", "book");
+                                window.location.href="userauth.html";
+
+                            }
+
+                            else{
+                                var locate="cout_page.html"
+                                window.location.href=locate;
+                            }
+                        }
+                       
+  </script>
+  <script src="index.js"></script>
+  <!-- <h1>Welcome to My Awesome App</h1>
+  <div id="sign-in-status"></div>
+  <div id="sign-in"></div>
+  <pre id="account-details"></pre> -->
+
+</body>
+
+</html>

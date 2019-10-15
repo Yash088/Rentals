@@ -1,0 +1,36 @@
+.a {
+  color: black !important;
+}
+.bor{
+  border: 1px solid #ededed;
+  box-shadow: none;
+}
+.text2{
+  font-family: 'Pacifico', cursive;
+  color:white;
+  font-size:55px;
+}
+@media only screen and (max-width: 640px) {
+  .card-body {
+      padding: 2px 5px 0 5px;
+  }
+  
+  .size {
+      font-size: 12px;
+      position: relative;
+      top: -20px;
+  }
+
+  .element {
+      padding: 2px;
+  }
+.text2{
+  font-size:45px;
+}
+.a{
+  color:black !important;
+}
+.b{
+  color:white!important;
+}
+}

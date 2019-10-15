@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> EasyBikes</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Permanent+Marker|Satisfy&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- UIkit JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css" />
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit-icons.min.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+
+
+    <title>Docs</title>
+    <style>
+        #b {
+            visibility: hidden;
+        }
+
+        #log_code {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class=" uk-position-top ">
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+                    <li><a><img src="img/logo.png" width="50px" height="50px"></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="uk-section uk-section-muted uk-flex uk-flex-middle " uk-height-viewport>
+        <div class="uk-width-1-1 uk-animation-fade">
+            <div class="uk-container">
+                <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                    <div class="uk-width-1-1@m">
+                        <div
+                            class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                            <ul class="uk-tab uk-flex-center" uk-grid uk-switcher="animation: uk-animation-fade">
+                                <li><a href="#">Sign Up</a></li>
+                                <li><a href="#">Log In</a></li>
+
+                            </ul>
+                            <ul class="uk-switcher uk-margin">
+                                <li>
+                                    <h3 class="uk-card-title uk-text-center">Sign up today. It's free!</h3>
+                                    <div>
+                                        <div class="uk-margin">
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                <input class="uk-input uk-form-large" id="name" type="text"
+                                                placeholder="Name" required>
+                                            </div>
+                                            <div class="uk-text-danger" id="invalid"></div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                                <input class="uk-input uk-form-large" id="email" type="text"
+                                                    placeholder="Email address" required>
+                                            </div>
+                                            <div class="uk-text-danger" id="invalid1"></div>
+                                        </div>
+
+                                        <div class="uk-margin">
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                                                <input class="uk-input uk-form-large" value="+91" id="phone" type="tel"
+                                                    maxlength="13" required>
+                                            </div>
+                                            <div class="uk-text-danger" id="invalid2"></div>
+                                        </div>
+
+                                        <div class="uk-margin" id="b">
+                                            <div class="uk-inline uk-width-1-1">
+                                                <input class="uk-input uk-form-large" placeholder="Code" id="code1"
+                                                    type="tel" maxlength="6" required>
+
+                                            </div>
+                                        <div class="uk-text-danger"id="invalid5"></div>
+                                    </div>
+                                    
+                                    <div class="uk-margin" id="op" style="visibility: visible">
+                                        <button id="submit" onclick="validate()"
+                                        class="uk-button uk-button-primary uk-button-large uk-width-1-1">Sign-up</button>
+                                    </div>
+                                    
+                                    <div class="uk-margin" id="op1" style="visibility: hidden">
+                                        <button id="submit1" onclick="valid_code()"
+                                        class="uk-button uk-button-primary uk-button-large uk-width-1-1">Sign-up</button>
+                                        </div>
+
+                                        <div class="uk-text-small uk-text-center">
+                                            Already have an account? <a href="#" uk-switcher-item="1">Log in</a>
+                                        </div>
+                                    </form>
+                                </li>
+                                <li id="login">
+                                    <h3 class="uk-card-title uk-text-center">Welcome Back !</h3>
+                                    
+
+
+                                    <div class="uk-margin">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                                            <input class="uk-input uk-form-large" value="+91" id="phone1" type="tel">
+                                
+                                        </div>
+                                        <div class="uk-text-danger"id="invalid4"></div>
+                                    </div>
+                                    
+                                    <div class="uk-margin" id="log_code">
+                                        <div class="uk-inline uk-width-1-1">
+                                            <input class="uk-input uk-form-large" placeholder="Code" id="log_code1"
+                                            maxlength="6" type="tel">
+                                        </div>
+                                        <div class="uk-text-danger"id="invalid6"></div>
+                                    </div>
+
+                                    <div class="uk-margin" id="log" style="visibility: visible">
+                                        <button id="submit" onclick="logval()"
+                                            class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                                    </div>
+
+                                    <div class="uk-margin" id="log1" style="visibility: hidden">
+                                        <button id="submit1" onclick="valid_log_code()"
+                                            class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                                    </div>
+                                    <div class="uk-text-small uk-text-center">
+                                        Not registered? <a href="#" uk-switcher-item="0">Create an account</a>
+                                    </div>
+                                    </form>
+                                </li>
+
+                                </form>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="md" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <form>
+                <div class="uk-inline uk-form-width-large">
+                    <select class=" uk-select uk-input uk-border-rounded " id="option">
+                        <option>Location</option>
+                        <option>Dehradoon</option>
+                    </select>
+
+                </div>
+                <input class="uk-input uk-border-rounded uk-form-width-large" id="ui" readonly>
+                <script>
+                    $('#ui').daterangepicker({
+                        "timePicker": true,
+                        "alwaysShowCalendars": true,
+                        "applyButtonClasses": "btn-secondary",
+                        startDate: moment(),
+                        endDate: moment().startOf('hour').add(24, 'hour'),
+                        locale: {
+                            format: 'DD/M/YY hh:00 A'
+                        },
+                        minDate: moment().startOf('hour'),
+                        "opens": "center"
+                    });
+
+
+                </script>
+
+
+                <p class="uk-text-right">
+
+                    <button class="uk-button uk-button-primary" onclick="parameter()" type="button">Rent</button>
+                </p>
+        </div>
+
+
+    </div>
+
+
+    </nav>
+    </div>
+    <div class="uk-section uk-section-secondary uk-light">
+        <div>
+            <div class="uk-align-left">
+                <h3 class="uk-margin-left">Easy Bikes</h3>
+            </div>
+            <div class="uk-align-right">
+                <span class="uk-margin-small-right uk-icon-button" uk-icon="mail"></span>
+                <span class="uk-margin-small-right uk-icon-button" uk-icon="google"></span>
+                <span class="uk-margin-small-right uk-icon-button" uk-icon="linkedin"></span>
+                <span class="uk-margin-small-right uk-icon-button" uk-icon="instagram"></span>
+                <span class="uk-margin-small-right uk-icon-button" uk-icon="twitter"></span>
+                <span class="uk-margin-small-right uk-icon-button" uk-icon="facebook"></span>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+
+    <script>
+    // var firebaseConfig = {
+    //     apiKey: "AIzaSyDl0VcmabczOs5yTSkvFpFk9rVFJJeMfzk",
+    //     authDomain: "vishwesh-1480f.firebaseapp.com",
+    //     databaseURL: "https://vishwesh-1480f.firebaseio.com",
+    //     projectId: "vishwesh-1480f",
+    //     storageBucket: "vishwesh-1480f.appspot.com",
+    //     messagingSenderId: "921533144339",
+    //     appId: "1:921533144339:web:284279e820fd0f1ce30ee6"
+    // };
+    // // Initialize Firebase
+    // firebase.initializeApp(firebaseConfig);
+        var firebaseConfig = {
+            apiKey: "AIzaSyB9IY9MVXJzgjBHZ-JegddvmJBU18xtB8U",
+            authDomain: "rentalbike-115b4.firebaseapp.com",
+            databaseURL: "https://rentalbike-115b4.firebaseio.com",
+            projectId: "rentalbike-115b4",
+            storageBucket: "rentalbike-115b4.appspot.com",
+            messagingSenderId: "240683021274",
+            appId: "1:240683021274:web:89ebd615402c9e525bc6e3"
+        };
+        //  
+        // <!-- Initialize Firebase -->
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+
+        function validate() {
+            var uname = document.getElementById('name').value;
+            var unam = document.getElementById('name');
+            var no = document.getElementById('phone').value;
+            var nim = document.getElementById('phone');
+            var umail = document.getElementById('email').value;
+            var umai = document.getElementById('email');
+            var alphaExp = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+            var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+
+            console.log(no);
+            console.log(no.slice(0, 3));
+            
+            console.log(uname, umail, no);
+            if (uname !== "" && umail !== "" && no !== "") {
+                if (uname.match(alphaExp)) {
+                    if (umail.match(emailExp)) {
+
+
+                        if (no.match('[+]+[9]+[1]+[0-9]{10}')) {
+                            console.log("here above the function");
+                            sign_up();
+
+                        }
+                        else {
+                                nim.focus();
+                                
+                                document.getElementById('invalid2').innerHTML="*Must Include +91";
+                                console.log("please write Number in +91... format")
+                        }
+                    }
+                    else {
+                        umai.focus();
+                        document.getElementById('invalid1').innerHTML="*invalid E-mail";
+                        console.log('invalid e-mail');
+                    }
+                }
+                else {
+                    unam.focus();
+                    document.getElementById('invalid').innerHTML="*invalid name";
+                    console.log('Please do not use the special cha rin ttheb fild ');
+                }
+            }
+            else {
+                console.log('here'+(uname.umail,no));
+                if(uname == "" && umail == "" && no == "+91"){
+                    console.log('there');
+                    
+                    document.getElementById('invalid').innerHTML="*Fill name";
+                    document.getElementById('invalid1').innerHTML="*Fill e-mail";
+                    document.getElementById('invalid2').innerHTML="*Fill Number ";
+                }
+                else{
+                if(uname == ""){
+
+                    document.getElementById('invalid').innerHTML="*Fill name";
+                    
+                }
+                
+                else{
+                    if(umail == ""){
+                    document.getElementById('invalid1').innerHTML="*Fill e-mail";
+                    }
+                    else{
+                        if(no==""){
+
+                            document.getElementById('invalid2').innerHTML="*Fill Number ";
+                        }
+                        
+                    }
+                }
+                
+            }
+        
+
+        }
+    }
+        function logval() {
+            var no1 = document.getElementById('phone1').value;
+            var no3 = document.getElementById('phone1');
+            if (no1 !== "") {
+                if (no1.match('[+]+[9]+[1]+[0-9]{10}')) {
+
+                    login();
+                }
+                else {
+                    no3.focus();
+                    document.getElementById('invalid4').innerHTML="Invalid num";
+                    console.log("please write number  in format +91...")
+                }
+            }
+            else {
+                
+                no3.focus();
+                document.getElementById('invalid4').innerHTML="Fill the Num";
+                console.log('please fill the form');
+            }
+        }
+        function login() {
+
+            var a = document.getElementById("phone1").value;
+            if (a == "") {
+                alert("Please enter your number");
+            } else {
+                window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('submit', {
+                    'size': 'invisible',
+                    'callback': function (response) {
+                        // reCAPTCHA solved, allow signInWithPhoneNumber.
+                        console.log("Captcha Resolved..")
+                    }
+                });
+
+                var num = document.getElementById("phone1").value;
+                console.log(num);
+                var db = firebase.database();
+                db.ref("/users/").on('value', function (data) {
+                    if (data.hasChild(num)) {
+                        console.log("error");
+                        db.ref("/users/" + num).on('value', function (Data) {
+                            localStorage.setItem("name", Data.val().name);
+                            localStorage.setItem("e-mail", Data.val().email);
+                            localStorage.setItem("uid", Data.val().uid);
+                            localStorage.setItem("num", Data.val().phone);
+
+                        });
+                        var appVerifier = window.recaptchaVerifier;
+                        console.log("Sending final Data");
+                        firebase.auth().signInWithPhoneNumber(num, appVerifier)
+                            .then(function (confirmationResult) {
+                                document.getElementById("log_code").style.visibility = "visible";
+                                document.getElementById("log").style.visibility = "hidden";
+                                document.getElementById("log1").style.visibility = "visible";
+                                window.confirmationResult = confirmationResult;
+                                console.log("Yash ");
+                            }).catch(function (error) {
+                                console.log(error);
+                                //location.reload();
+
+                            });
+
+
+                    }
+                    else {
+                        alert("Please sign-up");
+                    }
+                });
+
+
+
+            }
+
+        }
+
+        function sign_up() {
+
+            var a = document.getElementById("phone").value;
+            if (a == "") {
+                alert("Please enter your number");
+            } else {
+
+                var db = firebase.database();
+                db.ref("/users/").once('value', function (data) {
+                    if (data.hasChild(a)) {
+
+                        alert("please login");
+                        location.reload();
+
+                    }
+                    else {
+                        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('submit', {
+                            'size': 'invisible',
+                            'callback': function (response) {
+                                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                                console.log("Captcha Resolved..")
+                            }
+                        });
+
+                        var num = document.getElementById("phone").value;
+                        console.log(num);
+
+                        var appVerifier = window.recaptchaVerifier;
+                        console.log("Sending final Data");
+                        firebase.auth().signInWithPhoneNumber(num, appVerifier)
+                            .then(function (confirmationResult) {
+                                document.getElementById("b").style.visibility = "visible";
+                                document.getElementById("op").style.visibility = "hidden";
+                                document.getElementById("op1").style.visibility = "visible";
+                                window.confirmationResult = confirmationResult;
+                                console.log("Yash ");
+
+                            }).catch(function (error) {
+                                console.log(error);
+                                location.reload();
+
+                            });
+                    }
+
+
+                });
+
+
+
+
+
+            }
+
+        }
+
+
+        function login_confirm() {
+            var code = document.getElementById('log_code1').value;
+
+            confirmationResult.confirm(code).then(function (result) {
+                // User signed in successfully.
+                var href3 = localStorage.getItem("href");
+                if (href3 == null) {
+                    UIkit.modal('#md').show();
+
+
+                }
+                else if(href3=="book"){
+                    window.location = "cout_page.html"
+                }
+                else {
+                    window.location = "booking.html" + href3;
+                }
+
+
+
+                // ...
+            }).catch(function (error) {
+                // User couldn't sign in (bad verification code?)
+                // ...
+                location.reload();
+
+            });
+
+
+        }
+        // ...
+
+        function valid_code(){
+            var code = document.getElementById('code1').value;
+            var code3 = document.getElementById('code1');
+            if(code!==""){
+            if(code.match('^[0-9]{6}')){
+                sign_up_confirm();
+            }
+            else{
+                code3.focus();
+                document.getElementById('invalid5').innerHTML="*Only numbers";    
+                 console.log("please fill the code /only integers")
+            }
+            }
+            else{
+                code3.focus();
+                document.getElementById('invalid5').innerHTML="*Please Fil this";
+                console.log("Empty code please fill the code");
+            }
+        }
+
+        function valid_log_code(){
+            var code = document.getElementById('log_code1').value;
+            var code3 = document.getElementById('log_code1');
+            if(code!==""){
+            if(code.match('^[0-9]{6}')){
+                login_confirm();
+            }
+            else{
+                code3.focus();
+                document.getElementById('invalid6').innerHTML="*Only numbers";    
+                 console.log("please fill the code /only integers")
+            }
+            }
+            else{
+                code3.focus();
+                document.getElementById('invalid6').innerHTML="*Please Fil this";
+                console.log("Empty code please fill the code");
+            }
+        }
+
+        function sign_up_confirm() {
+            var code = document.getElementById('code1').value;
+
+            console.log(code + "hjhihiuiiijjk");
+            confirmationResult.confirm(code).then(function (result) {
+                
+                console.log(code = "iuoytyru");
+                // User signed in successfully.
+                var user = result.user;
+                var uid1 = result.user.uid;
+                var phonenum = result.user.phoneNumber;
+                console.log(phonenum, uid1);
+                console.log(result);
+                // console.log(user + "kalra");
+                var name1 = document.getElementById('name').value;
+                var email1 = document.getElementById('email').value;
+
+                localStorage.setItem("name", name1);
+                localStorage.setItem("e-mail", email1);
+                localStorage.setItem("uid", uid1);
+                localStorage.setItem("num", phonenum);
+                var db = firebase.database();
+                db.ref('users/' + phonenum).set({
+                    email: localStorage.getItem("e-mail"),
+                    name: localStorage.getItem("name"),
+                    phone: phonenum,
+                    uid: uid1
+                });
+                var href2 = localStorage.getItem("href");
+
+                if (href2 == null) {
+                    UIkit.modal('#md').show();
+
+
+                }
+                else if(href3=="book"){
+                    window.location = "cout_page.html"
+                }
+                else {
+                    window.location = "booking.html" + href2;
+                }
+            }).catch(function (error) {
+                // User couldn't sign in (bad verification code?)
+                console.log(error);
+                location.reload();
+            });
+        }
+
+        function parameter() {
+
+            let sd1 = $('#ui').val();
+            console.log(sd1);
+
+            var select = document.getElementById('option').value;
+            console.log(select);
+            var queryString = "?location=" + select + "&" + "Details=" + sd1;
+            console.log("The value is here" + queryString);
+            var location1 = "rent.html" + queryString;
+            if (select == "Location") {
+                alert("Please Choose a Location")
+
+            }
+            else {
+                console.log(location1);
+                window.location.href = location1;
+
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

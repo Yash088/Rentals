@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobile verification</title>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDpJh8dVkR_Nk_5-ax81n21aU_S2GxWIR4",
+            authDomain: "myproject-9db7e.firebaseapp.com",
+            databaseURL: "https://myproject-9db7e.firebaseio.com",
+            projectId: "myproject-9db7e",
+            storageBucket: "myproject-9db7e.appspot.com",
+            messagingSenderId: "873977281521",
+            appId: "1:873977281521:web:101cfb4889999bc1"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <style>
+        .a {
+            border: 1px solid black;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+        }
+
+        #b {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <div class="a">
+        <input type="text" placeholder="Please enter your number" id="phone">
+        <input type="submit" onclick="Myfun()" id="submit">
+    </div>
+    <div class="b" id="b">
+        <input type="number" placeholder="enter your code" />
+        <input type="submit" onclick="MyFuns()" />
+        </div>
+ 
+    <script type="text/javascript">
+
+        function Myfun() {
+
+            var a = document.getElementById("phone").value;
+            if (a == "") {
+                alert("Please enter your number");
+            } else {
+                 window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('submit', {
+                    'size': 'invisible',
+                    'callback': function(response) {
+                        // reCAPTCHA solved, allow signInWithPhoneNumber.
+                        console.log("Captcha Resolved..")
+                    }
+                 });
+
+                var a = document.getElementById("phone").value;
+                console.log(a);
+                var phoneNumber = a;
+                var appVerifier = window.recaptchaVerifier;
+                console.log("Sending final Data");
+                firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+                    .then(function (confirmationResult) {
+                        document.getElementById("b").style.visibility = "visible";
+                        window.confirmationResult = confirmationResult;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

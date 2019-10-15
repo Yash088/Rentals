@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> EasyBikes</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css" />
+    <!--<link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Satisfy&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+   -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Permanent+Marker|Satisfy&display=swap"
+        rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit-icons.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+</head>
+
+<body onload="fname()">
+    <div class="uk-position-relative uk-background-cover uk-width-viewport uk-height-viewport "
+        style="background-image: url(https://images.unsplash.com/photo-1558980664-3a031cf67ea8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);"
+        uk-img>
+
+        <div class="uk-position-top">
+            <nav class="uk-navbar-container  uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="index.html"><img src="img/logo.png" width="50px" height="50px"></a></li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right ">
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        <li><a class="a" href="userauth.html" style="display:inline" id="name10">Login/sign-up</a></li>
+                        <li><a class="a" onclick="bookings()" style="display:inline" id="name7">Bookings</a></li> 
+                        <!-- <li><a class="a" href="" style="display:none" id="username"></a></li> -->
+                        <li><a class="a" href="index.html" style="display:none" onclick="logout()"id="name9">logout</a></li>
+<!--                         
+            <li>     <button uk-toggle="target: #md" style="border:1px transparent; color:black; border:1px solid red;"  class= "uk-navbar-toggle uk-hidden@m uk-button-default" type="button" ><span uk-icon="icon: menu"></span>
+            </button> </li>   -->
+                    </ul>
+                </div>
+                  <div class="uk-navbar-right uk-hidden@m"> 
+
+                        <ul class="uk-navbar-nav " >
+                          <li>
+                
+                            <button uk-toggle="target: #md" style="border:1px transparent; "
+                              class=" uk-navbar-toggle uk-hidden@m uk-visible@xs uk-button-default  " type="button"><span
+                                uk-icon="icon: menu"></span>
+                            </button>
+                
+                          </li>
+                        </ul>
+                      </div>
+                <div id="md"  class=" uk-hidden@m" uk-offcanvas>
+                        <button class="uk-offcanvas-close" type="button" uk-close></button>
+                    <div class="uk-offcanvas-bar " >
+                    <ul style="list-style-type: none;">
+                        <li><a class="b" style="color:white" href="userauth.html"  id="name5">Login/sign-up</a></li>
+                        <li><a class="b" onclick="bookings()"  id="name7">My Bookings</a></li> 
+                        <!-- <li><a class="b" style="display:none" id="username"></a></li> -->
+                        <li><a class="b" href="index.html" style="display:none; "  onclick="logout()"id="name8">logout</a></li>
+                    </ul>
+                </div>
+                    </div>
+            </nav>
+
+        </div>
+
+
+        <div class="uk-position-center ">
+            <center>
+                <h1 class="text2">
+                    Rent.Ride.Relish</h1>
+            </center>
+
+            <form>
+
+                <div class="uk-width-1-1@s uk-search uk-search-default">
+                    <select class="uk-select uk-input uk-border-rounded " id="option">
+                        <option>Location</option>
+                        <option>Dehradoon</option>
+                    </select>
+
+                </div>
+                <!--XYZ-->
+                <div class="uk-width-1-1@s uk-margin-top">
+
+                    <input class="uk-input uk-border-rounded " id="demo" readonly>
+
+                </div>
+                <button type="button" class=" uk-button uk-button-primary uk-border-rounded uk-button-medium uk-align-center
+                    uk-margin" onclick="parameter()">Rent</button>
+            </form>
+        </div>
+
+    </div>
+    <section class="uk-section uk-section-muted ">
+        <h1 class=" uk-text-muted uk-text-uppercase uk-text-bold uk-text-center  uk-margin-medium-top">
+            Our Priorities
+            <hr class="uk-divider-small">
+        </h1>
+
+        <div class="uk-child-width-expand@s uk-text-center uk-margin-medium-top" uk-grid>
+            <div
+                class="uk-card uk-card-default uk-margin-small-left  uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
+                <h3 class="uk-card-title uk-text-center">Verified Vendors</h3>
+                <div class="uk-card-media-top">
+                    <img src="img/protection.png" width="150" height="100">
+
+                </div>
+                <p> we verify our vendor to assure our quality and provide you with only government authorized vendor
+                </p>
+
+            </div>
+            <div
+                class="uk-card uk-card-default uk-margin-small-left uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
+                <h3 class="uk-card-title uk-text-center">Quality</h3>
+
+                <div class="uk-card-media-top">
+                    <img class="uk-border-circle" src="img/quality.png " width="150" height="150" alt="">
+                </div>
+
+                <p>we assure our quality by verifying bikes and vendors</p>
+
+            </div>
+            <div
+                class="uk-card uk-margin-small-right uk-margin-left uk-card-default uk-card-hover uk-card-body uk-box-shadow-medium uk-padding">
+                <h3 class="uk-card-title uk-text-center">Safety</h3>
+                <div class="uk-card-media-top">
+                    <img class="uk-border-circle" src="img/shield.png" alt="Safety" width="150" height="100">
+                </div>
+                <p>your safety is our first priority, we provide you a ISI marked hemet during your ride</p>
+
+            </div>
+        </div>
+
+
+        <h1 class=" uk-text-muted uk-text-uppercase uk-background-muted uk-text-bold uk-text-center "style="margin-top:100px;" >Our Milestone
+            <hr class="uk-divider-small">
+        </h1>
+        <!-- <div class="uk-flex uk-flex-center  uk-margin-large-top ">
+            <div class="uk-card uk-card-default uk-margin-right ">
+                <img src="img/motorbike.png" class="uk-align-center uk-margin-top " uk-img>
+                <h1 style="color:#1DC2A4; "
+                    class=" uk-card-title uk-h1 uk-text-center uk-text-uppercase uk-text-bold uk-margin-top" id="ert">
+                </h1>
+                <div class="uk-card-body">
+                    <h3 class=" uk-text-muted   uk-text-center uk-text-uppercase uk-text-bold">bikes
+                        available
+                    </h3>
+                </div>
+
+            </div>
+            <div class="uk-card uk-card-default uk-margin-large-left ">
+                <h1 style="color:#1DC2A4; "
+                    class=" uk-card-title uk-h1 uk-text-center uk-text-uppercase uk-text-bold uk-margin-top "
+                    id="vend12">
+                </h1>
+                <div class="uk-card-body">
+                    <h3 class=" uk-text-muted  uk-text-center uk-text-uppercase uk-text-bold">associated
+                        vendors
+                    </h3>
+                </div>
+
+            </div>
+    </div> -->
+
+        <div class="uk-child-width-expand@s uk-grid-divider uk-margin-medium-top" uk-grid>
+
+            <div class="uk-align-left">
+                <h1
+                    class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top">
+                    About-us</h1>
+             <center>  <img  style="margin-left:4%" src="img/logo.png" uk-img>
+</center>
+                <p style="margin-left:25%;"> Easy Bikes is a aggrigated bike rental platform that provide bikes
+                    with
+                    quality
+                    assurance from verified vendors</p>
+
+            </div>
+            <div class="uk-align-center">
+                <h1 class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center ">
+                    Contact-us</h1>
+
+                <p class="uk-text uk-margin-large-top " style="margin-left:9%;"><i class="uk-icon-button "
+                        style="background: black ;color:white" uk-icon="receiver"></i> <span class="uk-text-secondary"> &nbsp; +916377364765</span> <br>
+                </p>
+            
+            <center>
+                <div >
+                        <i class="uk-icon-button " style="background: black ;color:white" uk-icon="mail"></i>
+                    <i class="uk-icon-button uk-margin-left" style="background: black ;color:white"
+                        uk-icon="google"></i>
+                    <i class="uk-icon-button uk-margin-left" style="background: black ;color:white"
+                        uk-icon="linkedin"></i>
+                    <i class="uk-icon-button uk-margin-left" style="background: black ;color:white"
+                        uk-icon="facebook"></i>
+                    <i class="uk-icon-button uk-margin-left" style="background: black ;color:white"
+                        uk-icon="twitter"></i>
+                    </div>
+            
+                    <div class="uk-margin-top " style="margin-left:8px;margin-right:20px;">
+                        <a class="uk-text-muted ">T&C</a>
+                        <a class="uk-text-muted uk-margin-left">Disclaimer</a>
+                        <a class="uk-text-muted uk-margin-left">Privacy Policy</a>
+                        <a class="uk-text-muted uk-margin-left ">Blog</a>
+            </div>
+        
+  </center>
+            </div>
+            <div class="uk-align-right uk-margin-right">
+                <h1
+                    class="uk-text-large uk-text-muted uk-text-uppercase uk-text-bold uk-text-center uk-margin-medium-top">
+                    Location</h1>
+
+                <div style="width: 100%"><iframe width="100%" height="300" class="uk-margin-small-right@s"
+                        src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=Dehradoon+()&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a
+                            href="https://www.maps.ie/coordinates.html">latitude longitude finder</a></iframe>
+                </div>
+                <br />
+
+            </div>
+        </div>
+
+
+    </section>
+
+    <div class="uk-section uk-section-secondary uk-light">
+            <div>
+                <div class="uk-align-left">
+                    <h3 class="uk-margin-left">Easy Bikes</h3>
+                </div>
+                <div class="uk-align-right">
+                    <span class="uk-margin-small-right uk-icon-button" uk-icon="mail"></span>
+                    <span class="uk-margin-small-right uk-icon-button" uk-icon="google"></span>
+                    <span class="uk-margin-small-right uk-icon-button" uk-icon="linkedin"></span>
+                    <span class="uk-margin-small-right uk-icon-button" uk-icon="instagram"></span>
+                    <span class="uk-margin-small-right uk-icon-button" uk-icon="twitter"></span>
+                    <span class="uk-margin-small-right uk-icon-button" uk-icon="facebook"></span>
+                </div>
+    
+            </div>
+        </div>
+
+
+
+    <script>
+        localStorage.removeItem("href");
+
+
+        function fname() {
+            if (localStorage.getItem('name')) {
+                
+                let nme = localStorage.getItem('name');
+                document.getElementById('name5').style.display='none';
+                document.getElementById('name10').style.display='none';
+                // document.getElementById('username').style.display='inline';
+                // document.getElementById('username').innerHTML = '<span  class=" uk-text-danger uk-text bold" uk-icon="icon: user;"  ratio: 1.5"></span>'+nme; 
+                document.getElementById('name7').style.display='inline';
+                document.getElementById('name8').style.display='inline';
+                document.getElementById('name9').style.display='inline';
+                console.log("here2345");
+
+            } 
+            else {
+                console.log("here");
+                 document.getElementById('name5').innerHTML = 'Login/Sign-up'; }
+        }
+       
+        // let c = 0;
+        //  function counter() {
+        //         var inter = setInterval(function () {
+        //             document.getElementById('ert').innerHTML = c + " +"; c++; stop(c, inter);
+        //         }, 30);
+        // }
+        // function stop(c, inter) { if (c == 101) { clearInterval(inter); } }
+        //  let c1 = 0;
+        //   function   counter1() {
+        //         var inter1 = setInterval(function () {
+        //             http://www.cosmopolitan.com/sex-love/advice/a2923/yes-you-have-a-g-spot-0409/
+        //             document.getElementById('vend12').innerHTML = c1 + " +"; c1++; stop1(c1, inter1);
+        //         },
+        //             30);
+        // } function stop1(c1, inter1) { if (c1 == 51) { clearInterval(inter1); } }
+        $('#demo').daterangepicker({
+            "timePicker": true, "alwaysShowCalendars":
+                true, "applyButtonClasses": "btn-secondary", startDate: moment(), endDate:
+                moment().startOf('hour').add(24, 'hour'), locale: { format: 'DD/M/YY hh:00 A' },
+            minDate: moment().startOf('hour'), "opens": "center"
+        }); function parameter() {
+            let sd1 = $('#demo').val();
+             console.log(sd1);
+              console.log("inside"); var
+                select = document.getElementById('option').value;
+                 var queryString = "?location=" +
+                    select + "&" + "Details=" + sd1;
+                     console.log("The value is here" + queryString);
+                      var location1 = "rent.html" + queryString;
+                       if (select == "Location") {
+                            alert("Please Choose a Location") }
+                             else {
+                                  window.location.href=location1;
+                    
+                                    }
+                                }                          
+                        function logout() {
+                            localStorage.removeItem("name"); localStorage.removeItem("e-mail");
+                            localStorage.removeItem("num"); localStorage.removeItem("uid");
+                        } 
+                        
+                        function bookings(){
+                            
+                            if(!localStorage.getItem('name')){
+                                localStorage.setItem("href", "book");
+                                window.location.href="userauth.html";
+
+                            }
+
+                            else{
+                                var locate="cout_page.html"
+                                window.location.href=locate;
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        </script> 
+                        
+                    
+                    
+                    
+                    
+                    </body>
+                                    </html>

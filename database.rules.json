@@ -1,0 +1,36 @@
+{
+    "rules": {
+   
+    "Vendors" : {
+
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "bikeList" : {
+
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "bikesAdded" :{
+
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "bookings" : {
+
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "placesLaunched" : {
+      
+      ".read": true ,
+      ".write": "auth != null"
+    },
+    "users" :{
+
+      ".read": true ,
+      ".write": "auth != null"
+    }
+
+  }
+}
