@@ -25,10 +25,56 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+  <style>
+    .yo{
+      margin-top:5px !important;
+      margin-bottom:0px !important;
+    }
+    .yo1{
+      margin-top:-20px !important;
+    margin-bottom:5px!important;
+    }
+      .overlay {
+        position: fixed; /* Sit on top of the page content */
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+      }
+       
+      .load{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);
+        /*change these sizes to fit into your project*/
+        width:100px;
+        height:100px;
+      }
+      
+      .load hr{border:0;margin:0;width:40%;height:40%;position:absolute;border-radius:50%;animation:spin 2s ease infinite}
+      
+      .load :first-child{background:#19A68C;animation-delay:-1.5s}
+      .load :nth-child(2){background:#F63D3A;animation-delay:-1s}
+      .load :nth-child(3){background:#FDA543;animation-delay:-0.5s}
+      .load :last-child{background:#193B48}
+      
+      @keyframes spin{
+        0%,100%{transform:translate(0)}
+        25%{transform:translate(160%)}
+        50%{transform:translate(160%, 160%)}
+        75%{transform:translate(0, 160%)}
+      }
+      
+      
+      </style>
+      
 </head>
 
-<body onload="fname()"> 
+<body onload="fname() ,counter()">
+    
   <div class="uk-position-top">
     <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
 
@@ -145,6 +191,11 @@
 
       </div>
   </div>
+  <div class=" overlay" id="tre">
+      <div class="  load" style="display:none;"id="ert">
+          <hr/><hr/><hr/><hr/>
+        </div>
+      </div>
   <!-- <div class="uk-modal" id="booking_login">
 
   </div> -->
@@ -179,6 +230,20 @@
       minDate: moment().startOf('hour'),
       "opens": "center"
     });
+    let c = 0;
+         function counter() {
+                var inter = setInterval(function () {
+                    document.getElementById('ert').style.display ="block";
+                    document.getElementById('tre').style.display ="block";
+                    console.log(c);
+                    c++; 
+                    stop(c, inter);
+                }, 30);
+        }
+        function stop(c, inter) { if (c == 96) {
+            document.getElementById('ert').style.display ="none";
+            document.getElementById('tre').style.display ="none";
+             clearInterval(inter); } }
     function fname() {
       if (localStorage.getItem('name')) {
                 
@@ -189,9 +254,6 @@
                 // document.getElementById('username').innerHTML = '<span  class=" uk-text-danger uk-text bold" uk-icon="icon: user;"  ratio: 1.5"></span>'+nme; 
                 document.getElementById('name7').style.display='inline';
                 document.getElementById('name8').style.display='inline';
-                
-                console.log("here2345");
-
             } 
             else {
                 console.log("here");
@@ -209,7 +271,7 @@
       var location1 = "rent.html" + queryString;
       
       if (select1 !== "Location") {
-        console.log("yha hu bsdkee");
+        // console.log("yha hu bsdkee");
         
          window.location.href = location1;
 
@@ -244,9 +306,7 @@
                             if(!localStorage.getItem('name')){
                                 localStorage.setItem("href", "book");
                                 window.location.href="userauth.html";
-
                             }
-
                             else{
                                 var locate="cout_page.html"
                                 window.location.href=locate;
@@ -259,7 +319,7 @@
   <div id="sign-in-status"></div>
   <div id="sign-in"></div>
   <pre id="account-details"></pre> -->
-
+  
 </body>
 
 </html>

@@ -25,10 +25,10 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-
 </head>
 
 <body onload="fname()">
+    
     <div class="uk-position-relative uk-background-cover uk-width-viewport uk-height-viewport "
         style="background-image: url(https://images.unsplash.com/photo-1558980664-3a031cf67ea8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);"
         uk-img>
@@ -155,7 +155,8 @@
             <div class="uk-card uk-card-default uk-margin-right ">
                 <img src="img/motorbike.png" class="uk-align-center uk-margin-top " uk-img>
                 <h1 style="color:#1DC2A4; "
-                    class=" uk-card-title uk-h1 uk-text-center uk-text-uppercase uk-text-bold uk-margin-top" id="ert">
+                    class=" uk-card-title uk-h1 uk-text-center uk-text-uppercase uk-text-bold uk-margin-top" 
+                    >
                 </h1>
                 <div class="uk-card-body">
                     <h3 class=" uk-text-muted   uk-text-center uk-text-uppercase uk-text-bold">bikes
@@ -256,9 +257,7 @@
     
             </div>
         </div>
-
-
-
+        
     <script>
         localStorage.removeItem("href");
 
@@ -282,13 +281,7 @@
                  document.getElementById('name5').innerHTML = 'Login/Sign-up'; }
         }
        
-        // let c = 0;
-        //  function counter() {
-        //         var inter = setInterval(function () {
-        //             document.getElementById('ert').innerHTML = c + " +"; c++; stop(c, inter);
-        //         }, 30);
-        // }
-        // function stop(c, inter) { if (c == 101) { clearInterval(inter); } }
+                    
         //  let c1 = 0;
         //   function   counter1() {
         //         var inter1 = setInterval(function () {
@@ -302,7 +295,8 @@
                 true, "applyButtonClasses": "btn-secondary", startDate: moment(), endDate:
                 moment().startOf('hour').add(24, 'hour'), locale: { format: 'DD/M/YY hh:00 A' },
             minDate: moment().startOf('hour'), "opens": "center"
-        }); function parameter() {
+        });
+         function parameter() {
             let sd1 = $('#demo').val();
              console.log(sd1);
               console.log("inside"); var

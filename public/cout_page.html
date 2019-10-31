@@ -19,10 +19,46 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-
+    <style>
+            .overlay {
+              position: fixed; /* Sit on top of the page content */
+              display: none; /* Hidden by default */
+              width: 100%; /* Full width (cover the whole page) */
+              height: 100%; /* Full height (cover the whole page) */
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+              z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+              cursor: pointer; /* Add a pointer on hover */
+            }
+             
+            .load{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);
+              /*change these sizes to fit into your project*/
+              width:100px;
+              height:100px;
+            }
+            
+            .load hr{border:0;margin:0;width:40%;height:40%;position:absolute;border-radius:50%;animation:spin 2s ease infinite}
+            
+            .load :first-child{background:#19A68C;animation-delay:-1.5s}
+            .load :nth-child(2){background:#F63D3A;animation-delay:-1s}
+            .load :nth-child(3){background:#FDA543;animation-delay:-0.5s}
+            .load :last-child{background:#193B48}
+            
+            @keyframes spin{
+              0%,100%{transform:translate(0)}
+              25%{transform:translate(160%)}
+              50%{transform:translate(160%, 160%)}
+              75%{transform:translate(0, 160%)}
+            }
+            
+            
+            </style>
 </head>
 
-<body>
+<body onload="counter()">
     <div class=" uk-position-top shadow  bg-white ">
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
 
@@ -62,6 +98,11 @@
 
         </div>
     </div>
+    <div class=" overlay" id="tre">
+            <div class="  load" style="display:none;"id="ert">
+                <hr/><hr/><hr/><hr/>
+              </div>
+            </div>
 
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
@@ -69,15 +110,6 @@
 
     <script>
         //         var firebaseConfig = {
-        //     apiKey: "AIzaSyDl0VcmabczOs5yTSkvFpFk9rVFJJeMfzk",
-        //     authDomain: "vishwesh-1480f.firebaseapp.com",
-        //     databaseURL: "https://vishwesh-1480f.firebaseio.com",
-        //     projectId: "vishwesh-1480f",
-        //     storageBucket: "vishwesh-1480f.appspot.com",
-        //     messagingSenderId: "921533144339",
-        //     appId: "1:921533144339:web:284279e820fd0f1ce30ee6"
-        //   };
-        //   // Initialize Firebase
         //   firebase.initializeApp(firebaseConfig);
         var firebaseConfig = {
             apiKey: "AIzaSyB9IY9MVXJzgjBHZ-JegddvmJBU18xtB8U",
@@ -93,12 +125,22 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <script>
+        let c = 0;
+         function counter() {
+                var inter = setInterval(function () {
+                    document.getElementById('ert').style.display ="block";
+                    document.getElementById('tre').style.display ="block";
+                    console.log(c);
+                    c++; 
+                    stop(c, inter);
+                }, 30);
+        }
+        function stop(c, inter) { if (c == 113) {
+            document.getElementById('ert').style.display ="none";
+            document.getElementById('tre').style.display ="none";
+             clearInterval(inter); } }
         var today = new Date().getTime();
-        var queryString1 = decodeURIComponent(window.location.search);
-        queryString1 = queryString1.substring(1);
-        var Mainqueries = queryString1.split("?");
-        var ert = Mainqueries[0];
-        var spt = ert.split("=");
+        console.log(today+"start");
         var db = firebase.database();
         db.ref('/placesLaunched/').once('value').then(function (snapshot) {
 
@@ -107,28 +149,12 @@
 
 
                 db.ref("/bookings/" + locate + '/').on('child_added', function (data) {
-                    // console.log(data.key);
                     var num = localStorage.getItem("num");
-                    //                    console.log(num);
                     db.ref("/bookings/" + locate + "/" + data.key).on('value', function (data1) {
-                        // console.log(data1.val().contact);
                         if (num == data1.val().contact) {
-                            // console.log("yash");
-
-
-                            //console.log(data1.key);
                             db.ref('/bookings/' + locate + '/' + data1.key).on('value', function (data2) {
-                                // console.log("inside");
-                                // console.log(data2.val().vendorId + "vendoe vendor");
-                                // console.log(data2.val().bookingId, data2.val().charge, data2.val().contact, data2.val().from, data2.val().to, data2.val().pin, data2.val().vendorId);
                                 db.ref('/Vendors/' + data2.val().vendorId).on('value', function (data3) {
-                                    // console.log("vgtrccgrtcgrfgrfc");
-                                    // console.log(data2.val().vendorId);
-                                    // console.log(data3.val().address);
                                     db.ref('/bikeList/' + data2.val().bikeId).on('value', function (data4) {
-
-                                        // console.log(data4.val().bikeName, data4.val().pic);
-                                        // console.log(data3.val().city, data3.val().address, data3.val().shop_contact);
                                         var date = new Date(data2.val().from);
                                         date = date.toString();
                                         date = date.split(" ");
@@ -137,22 +163,21 @@
                                         var time = date[4];
                                         // console.log(time);
                                         var time1 = time.slice(0, 5);
+                                        //console.log("to datae"+data2.val().to);
                                         var date1 = new Date(data2.val().to);
-
+                                        var date1123 = new Date(data2.val().to);
                                         date1 = date1.toString();
                                         date1 = date1.split(" ");
-
-                                        var from2 = date[2] + " " + date[1] + " " + date[3];
-                                        var time2 = date[4];
-
+                                        var from2 = date1[2] + " " + date1[1] + " " + date1[3];
+                                        var time2 = date1[4];
                                         var time3 = time2.slice(0, 5);
-                                        console.log(data2.val().cancel, data4.val().bikeName);
-
-                                        if ((data2.val().cancel).localeCompare("yes") == 0) {
-                                            //console.log("here");
-
+                                        var toDate=data2.val().to;            
+                                        //console.log("Yash"+today+"Date"+toDate);
+                                        //console.log("In main loop Meri Wali"+toDate+"drop Date Date"+data2.val().to);
+                                        if ((data2.val().cancel).localeCompare("yes") == 0 ) {
+                                            console.log("DataBase Date:"+data2.val().to+"Date on The Display:"+date1123+"Date That is Diplay"+from2+"Date that Is Comparing"+toDate);  
                                             document.getElementById('book').innerHTML = document.getElementById('book').innerHTML + '<div  id="book1"class="col-lg-3 col-md-4 col-sm-6 col-xs-12 edit" >' +
-                                                '<div class="tile">' +
+                                                '<div class="tile">' +                              
                                                 ' <div class="wrapper">' +
                                                 '<div class="header">' + data4.val().bikeName + '</div>' +
 
@@ -239,26 +264,113 @@
 
                                                 '<div class="footer">' +
                                                 '<a   class="Cbtn Cbtn-danger btn-block " style="text-align:center">Cancelled</a>' +
-                                                // '<a href="#" class="Cbtn Cbtn-danger" style="visibility: visible;" onclick="cancel(' + data2.val().bookingId + ')" id="cancel">Cancel</a>' +
-                                                // '<a href="#" class="Cbtn Cbtn-danger"  style="visibility: hidden;" id="cancel1">Cancelled</a>' +
                                                 '</div>' +
                                                 '</div>' +
                                                 '</div>';
 
 
-                                            //console.log("her222112e");
-
-                                            // document.getElementById('cancel').style.visibility = "hidden";
-                                            // document.getElementById('cancel1').style.visibility = "visible";
-
-
                                         }
                                         else {
-                                            //                 console.log("errorfevhfjjkvdkj");
-                                            //                 document.getElementById('home').style.visibility = "visible";
-                                            //                 document.getElementById('cancel').style.visibility = "visible";
-                                            //                 document.getElementById('cancel1').style.visibility = "hidden";
+                                        if(today>toDate){
+                                            console.log("here in the Today>toDate");
+                                            console.log("DataBase Date:"+data2.val().to+"Date on The Display:"+date1123+"Date That is Diplay"+from2+"Date that Is Comparing"+toDate);
+                                         document.getElementById('book').innerHTML = document.getElementById('book').innerHTML + '<div  id="book1"class="col-lg-3 col-md-4 col-sm-6 col-xs-12 edit" >' +
+                                                '<div class="tile">' +
+                                                ' <div class="wrapper">' +
+                                                '<div class="header">' + data4.val().bikeName + '</div>' +
 
+                                                '<div class="banner-img">' +
+                                                '<img src="' + data4.val().pic + '" alt="Image 1">' +
+                                                '</div>' +
+
+                                                '<div class="dates">' +
+                                                '   <div>' +
+                                                '      <strong>STARTS</strong> ' + from1 +
+
+                                                '</div>' +
+                                                '<div>' +
+                                                '<strong>ENDS</strong> ' + from2 +
+
+
+                                                '</div>' +
+                                                '</div>' +
+
+                                                '<div class=" stats">' +
+
+                                                '<div>' +
+                                                '  <strong>Pick-up</strong> ' + time1 +
+                                                '</div>' +
+
+
+                                                '<div>' +
+
+                                                '   <strong><span class="uk-text-warning"' +
+                                                'uk-icon="icon: location; ratio: 1"></span></strong> ' +
+                                                '<span>' + locate + '</span>' +
+
+                                                '</div>' +
+
+                                                '<div>' +
+                                                '<strong>Drop Time </strong> ' + time3 +
+                                                '</div>' +
+
+                                                '</div>' +
+
+                                                '<div class="stats">' +
+
+                                                '<div>' +
+                                                '   <strong>Booking Id</strong> ' +
+                                                '<span>' + data2.val().bookingId + '</span>' +
+
+                                                '</div>' +
+
+                                                '<div>' +
+                                                '<strong>Total Amount</strong> ' +
+                                                '<span>' + data2.val().charge + '</span>' +
+
+                                                '</div>' +
+                                                '<div>' +
+                                                '<strong>Pin</strong> ' +
+                                                '<span>' + data2.val().pin + '</span>' +
+
+                                                '</div>' +
+
+                                                '</div>' +
+
+                                                '<div class="starts">' +
+
+                                                '<div>' +
+                                                '  <p>' +
+                                                '<strong style="float:left"><span class="uk-text-primary"' +
+                                                'uk-icon="icon: location; ratio: 1"></span> Address</strong><br>' +
+                                                '</p>' +
+                                                '<p class=" uk-text-left uk-margin-left">' + data3.val().address + '</p>' +
+                                                '</div>' +
+
+
+                                                '<div>' +
+                                                '<p>' +
+                                                '<strong style="float:left" class="uk-margin-left">Contact Number</strong>' +
+                                                '</p>' +
+                                                '<br>' +
+                                                '<p class=" uk-text-left uk-margin-left">' + data3.val().shop_contact + '</p>' +
+
+                                                '</div>' +
+
+                                                '</div>' +
+                                                '</div>' +
+
+                                                '<div class="footer">' +
+                                                '<a href="index.html" id="home" style="visibility: visible;" class="Cbtn Cbtn-primary">Home</a>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</div>';
+
+                                        }
+                                        
+                                        else{
+                                            console.log("here else else");
+                                            console.log("DataBase Date:"+data2.val().to+"Date on The Display:"+date1123+"Date That is Diplay"+from2+"Date that Is Comparing"+toDate);
                                             document.getElementById('book').innerHTML = document.getElementById('book').innerHTML + '<div  id="book1"class="col-lg-3 col-md-4 col-sm-6 col-xs-12 edit" >' +
                                                 '<div class="tile">' +
                                                 ' <div class="wrapper">' +
@@ -348,11 +460,11 @@
                                                 '<div class="footer">' +
                                                 '<a href="index.html" id="home" style="visibility: visible;" class="Cbtn Cbtn-primary">Home</a>' +
                                                 '<a href="#" class="Cbtn Cbtn-danger" style="visibility: visible;" onclick="cancel(' + data2.val().bookingId + ')" id="cancel">Cancel</a>' +
-                                                // '<a href="#" class="Cbtn Cbtn-danger"  style="visibility: hidden;" id="cancel1">Cancelled</a>' +
+                                                
                                                 '</div>' +
                                                 '</div>' +
                                                 '</div>';
-
+                                        }
                                         }
 
                                     });
@@ -360,10 +472,6 @@
                             });
                         }
                     });
-
-
-
-
                 });
             }
         });
@@ -373,6 +481,7 @@
                         }
         function cancel(val) {
             var bookId = val;
+            
             var r = confirm("Are You Sure You Want To Cancel The Booking");
             if (r == true) {
 
@@ -388,7 +497,7 @@
 
 
     </script>
-</body>
+    </body>
 
 
 

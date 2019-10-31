@@ -3,7 +3,7 @@
    
     "Vendors" : {
 
-      ".read": true,
+      ".read": "auth != null",
       ".write": "auth != null"
     },
     "bikeList" : {
@@ -23,7 +23,7 @@
     },
     "placesLaunched" : {
       
-      ".read": true ,
+      ".read": "auth!=null" ,
       ".write": "auth != null"
     },
     "users" :{

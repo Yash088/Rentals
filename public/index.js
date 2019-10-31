@@ -40,118 +40,125 @@ let hour = parseInt(duration.asHours());
 // alert("number of days" + Days + "hour" + hour);
 
 var db = firebase.database();
-// console.log(hours + "Outside Function");
-
-db.ref('/bikesAdded/' + queries[1]).on('child_added', function (snapshot) {
-  let bike_fetch = snapshot.key;
-  let bike_num = bike_fetch.split("_");
-  db.ref('/bikesAdded/' + queries[1] + "/" + bike_fetch).on('value', function (Data) {
-    db.ref('/bikeList/' + bike_num[1]).on('value', function (data) {
-      // console.log(hour = "Indisde");
-     var amount1=[];
+console.log(Days);
+var outputArray = [];
+function removeusingSet(arr) { 
+  let outputArray = Array.from(new Set(arr)) 
+  return outputArray 
+} 
+var key1;
+let key=[];
+let amount=[];
+let bikeKey=[];
+// let cost={};
+db.ref('/bikesAdded/' + queries[1]).once('value').then( function (Data)  
+{
+  for(let i=0;i<Object.keys(Data.val()).length;i++){
     
-      if(Days!=0 &&hour==0)
-      {
-        console.log(Days,hour);
-        console.log(snapshot.key);
-        console.log(Data.val().amt_per_day);
-        console.log(Data.val().amt_per_hr);
-       if (Data.hasChild("amt_per_day")) {
-         console.log("only day wla");
-         let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour;
-         let priceDay = priceD + parseInt((priceD * 10) / 100);
-        //  document.getElementById('edit1').innerHTML="Price is With day";
-         
-         amount1.push(priceDay);     
-         console.log(priceDay);
-        }
-        else{
-          let tohour=Days*24+hour
-          let priceD =  Data.val().amt_per_hr *tohour ;
-          let priceDay = priceD + parseInt((priceD * 10) / 100);
-          console.log(priceDay);
-          console.group("only in day  wala but in worong statement")
-           amount1.push(priceDay);
-          //  document.getElementById('edit1').innerHTML="Price is With only Hour";
+    let bike_fetch = Object.keys(Data.val())[i];
+    let bike_num = bike_fetch.split("_");
+    key.push(bike_fetch  );
+    bikeKey.push(bike_num[1]);
+     key1=removeusingSet(bikeKey); 
+    }
+    
+    // console.log(key1); 
+    // console.log(key); 
+     
+  }).then(function(){
+
+    for(let k=0;k<key1.length;k++){
+      let amount1=[];
+      for(let j=0;j<key.length;j++){
+      db.ref('/bikesAdded/' + queries[1] + "/" + key[j]).on('value', function (Data) { //.then callback lagega key and value ke saath
+      
+        if(key1[k] == Data.val().bikeId){ 
+        var hour1=Math.abs(hour);
+        if(Days!=0 &&hour1==0)
+        {
+     
+         if (Data.hasChild("amt_per_day")) {
+           let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour1;
+           let priceDay = priceD + parseInt((priceD * 10) / 100);
+           amount1.push(priceDay);     
           }
-        
-      }
-      else if(Days!=0 && hour>0){
-        if (Data.hasChild("amt_per_day")) {
-          console.log("days hour walaw");
-          let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour;
-          let priceDay = priceD + parseInt((priceD * 10) / 100);
-          console.log(priceDay);
-          // document.getElementById('edit1').innerHTML="Price is With Day and hour";
-          amount1.push(priceDay);
+          else{
+            let tohour=Days*24+hour1
+            let priceD =  Data.val().amt_per_hr *tohour ;
+            let priceDay = priceD + parseInt((priceD * 10) / 100);
+            amount1.push(priceDay);
+            }
+          
         }
-        else{
-          console.log("days hour wala but amt_per_Day  is not available");
-          let tohour=Days*24+hour
-          let priceD =  Data.val().amt_per_hr *tohour ;
-          let priceDay = priceD + parseInt((priceD * 10) / 100);
-          console.log(priceDay);
-          // document.getElementById('edit1').innerHTML="Price is With day and hour";
+        else if(Days!=0 && hour1>0){
+          if (Data.hasChild("amt_per_day")) {
+         
+            let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour1;
+            let priceDay = priceD + parseInt((priceD * 10) / 100);
+            amount1.push(priceDay);
+          }
+          else{
+            let tohour=Days*24+hour1
+            let priceD =  Data.val().amt_per_hr *tohour ;
+            let priceDay = priceD + parseInt((priceD * 10) / 100);
+           amount1.push(priceDay);
+         }
+       }
+       else if(Days==0&&hour1>=0){
+         let priceD=hour1*data.val().amt_per_hr;
+         let priceDay = priceD + parseInt((priceD * 10) / 100);
          amount1.push(priceDay);
-       }
-     }
-     else if(Days==0&&hour>=0){
-       console.log("only hours wla");
-       let priceD=hour*data.val().amt_per_hr;
-       let priceDay = priceD + parseInt((priceD * 10) / 100);
-       console.log(priceDay);
-       amount1.push(priceDay);
-      //  document.getElementById('edit1').innerHTML="Price is onlu";
-       }
-      
-      
-      
-       let hours = parseInt(Days * 24 + hour);
-       let pricee = Data.val().amt_per_hr * hours;
-       let cost1 = pricee + parseInt(pricee * 10 / 100);
-       
-      document.getElementById('yo1').innerHTML = document.getElementById('yo1').innerHTML +
-        '<div class=" uk-margin-left@s uk-width-1-1@s uk-width-1-2`@m uk-width-1-3@l uk-width-1-4@xl uk-padding-small uk-margin-remove element" onclick="book(' + Data.val().bikeId + "," + Data.val().amt_per_hr * hours + ')" href="booking_login.html"' +
-        '>' +
-        '<div class="uk-card bor uk-card-hover uk-card-default uk-margin-remove">' +
-        '   <div class="uk-card-media-top uk-width-2-3@s uk-align-center uk-margin-remove-bottom">' +
-        ' <img src=' + data.val().pic + ' alt="">' +
-        '</div>                        <hr class="uk-margin-remove-bottom uk-margin-small-top">' +
-        '<div class="uk-card-body uk-padding-small uk-background-muted card-body">' +
-        ' <h5 class="uk-margin-small-bottom bike-name">' + data.val().bikeName + '<span class="uk-align-right@s uk-text-bold uk-text-small">&#x20b9;' + amount1[0] + '</span></h5>' +
-        '<div class="uk-margin-remove uk-text-small uk-text-nowrap size"><span' +
-        ' uk-icon="icon: location; ratio: 0.8" class="location-icon"></span>Available in <span' +
-        '  class="uk-text-warning uk-text-bold">' + queries[1] + '</span></div>' +
-        ' </div>' +
-        '</div>' +
-
+         }
+        }       
+      });
+    }
+      db.ref('/bikeList/' + key1[k]).on('value', function (data) {
+        document.getElementById('yo1').innerHTML = document.getElementById('yo1').innerHTML +
+        '<div class=" uk-margin-left@s uk-width-1-1@s uk-width-1-2`@m uk-width-1-3@l uk-width-1-4@xl uk-padding-small uk-margin-remove element" onclick="book(' + key1[k] +')" href="booking_login.html"' +
+         '>'+
+         '<div class="uk-card bor uk-card-hover uk-card-default uk-margin-remove">' +
+         '   <div class="uk-card-media-top uk-width-2-3@s uk-align-center uk-margin-remove-bottom">' +
+         ' <img src=' + data.val().pic + ' alt="">' +
+         '</div>                        <hr class="uk-margin-remove-bottom uk-margin-small-top">' +
+         '<div class="uk-card-body uk-padding-small uk-background-muted card-body">' +
+         ' <h5 class="uk-margin-remove bike-name"  >' + data.val().bikeName +'</h5>'
+         +'<h5 class="yo"><span class="uk-align-center uk-text-bold uk-text-small"  >Price Starting From  &#x20b9;' + Math.min(...amount1) + '</span></h5>' +
+         '<div class="uk-margin-remove uk-text-small uk-text-nowrap size yo1" ><span' +
+         ' uk-icon="icon: location; ratio: 0.8" class="location-icon"></span>Available in <span' +
+         '  class="uk-text-warning uk-text-bold">' + queries[1] + '</span></div>' +
+         ' </div>' +
+         '</div>' +
         '</div>';
-
-    });
-  });
-
+     });
+    
+  
+  }
+  
 });
 
 
-function book(val4, val2) {
+db.ref('/bikesAdded/' + queries[1]).on('child_added',function()  
+{
+});
+
+
+function book(val4) {
   var de = val4;
-  var de2 = val2;
+  var hour1=Math.abs(hour);
   var vendorid = [];
   var price = [];
   db.ref('/bikesAdded/' + queries[1]).on('child_added', function (snapshot, hours) {
     let bike_fetch = snapshot.key;
     db.ref('/bikesAdded/' + queries[1] + "/" + bike_fetch).on('value', function (Data) {
       var clickedId = Data.val().bikeId;
-      let hours = parseInt(Days * 24 + hour);
-
-      if (de == clickedId) {
+      if(de == clickedId) {
         vendorid.push(bike_fetch);
-        console.log(bike_fetch);
-        if(Days!=0 &&hour==0)
+        console.log(Days,hour1);
+        if(Days!=0 &&hour1==0)
         {
          if (Data.hasChild("amt_per_day")) {
            console.log("only day wla");
-           let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour;
+           let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour1;
            let priceDay = priceD + parseInt((priceD * 10) / 100);
           //  document.getElementById('edit1').innerHTML="Price is With day";
            
@@ -159,7 +166,7 @@ function book(val4, val2) {
            console.log(priceDay);
           }
           else{
-            let tohour=Days*24+hour
+            let tohour=Days*24+hour1
             let priceD =  Data.val().amt_per_hr *tohour ;
             let priceDay = priceD + parseInt((priceD * 10) / 100);
             console.log(priceDay);
@@ -169,10 +176,10 @@ function book(val4, val2) {
             }
           
         }
-        else if(Days!=0 && hour>0){
+        else if(Days!=0 && hour1>0){
           if (Data.hasChild("amt_per_day")) {
             console.log("days hour walaw");
-            let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour;
+            let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * hour1;
             let priceDay = priceD + parseInt((priceD * 10) / 100);
             console.log(priceDay);
             // document.getElementById('edit1').innerHTML="Price is With Day and hour";
@@ -180,7 +187,7 @@ function book(val4, val2) {
           }
           else{
             console.log("days hour wala but amt_per_Day  is not available");
-            let tohour=Days*24+hour
+            let tohour=Days*24+hour1
             let priceD =  Data.val().amt_per_hr *tohour ;
             let priceDay = priceD + parseInt((priceD * 10) / 100);
             console.log(priceDay);
@@ -188,11 +195,10 @@ function book(val4, val2) {
            price.push(priceDay);
          }
        }
-       else if(Days==0&&hour>=0){
+       else if(Days==0&&hour1>=0){
          console.log("only hours wla");
-         let priceD=hour*data.val().amt_per_hr;
+         let priceD=hour1*data.val().amt_per_hr;
          let priceDay = priceD + parseInt((priceD * 10) / 100);
-         console.log(priceDay);
          price.push(priceDay);
         //  document.getElementById('edit1').innerHTML="Price is onlu";
          }
@@ -211,23 +217,7 @@ function book(val4, val2) {
     window.location.href = 'userauth.html';
   }
   else {
+    
     window.location.href = 'booking.html' + id;
   }
 }
-
-// if (Data.hasChild("amt_per_day")) {
-//   let day = parseInt(hours / 24);
-//   console.log("day wla");
-
-//   let Hour = hours % 24;
-//   let priceD = Days * Data.val().amt_per_day + Data.val().amt_per_hr * Hour;
-//   let priceDay = priceD + parseInt((price * 10) / 100);
-//   price.push(priceDay);
-// }
-// else {
-//   console.log("hour wala");
-//   let priceF = Data.val().amt_per_hr * hours;
-//   let priceFinal = priceF + parseInt((priceF * 10 / 100));
-//   console.log(Data.val().amt_per_hr, hours, priceFinal);
-//   price.push(priceFinal);
-// }

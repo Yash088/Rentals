@@ -33,10 +33,45 @@
         #log_code {
             visibility: hidden;
         }
+        .overlay {
+        position: fixed; /* Sit on top of the page content */
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+      }
+       
+      .load{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);
+        /*change these sizes to fit into your project*/
+        width:100px;
+        height:100px;
+      }
+      
+      .load hr{border:0;margin:0;width:40%;height:40%;position:absolute;border-radius:50%;animation:spin 2s ease infinite}
+      
+      .load :first-child{background:#19A68C;animation-delay:-1.5s}
+      .load :nth-child(2){background:#F63D3A;animation-delay:-1s}
+      .load :nth-child(3){background:#FDA543;animation-delay:-0.5s}
+      .load :last-child{background:#193B48}
+      
+      @keyframes spin{
+        0%,100%{transform:translate(0)}
+        25%{transform:translate(160%)}
+        50%{transform:translate(160%, 160%)}
+        75%{transform:translate(0, 160%)}
+      }
+      
+     
     </style>
 </head>
 
-<body>
+<body >
 
     <div class=" uk-position-top ">
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
@@ -216,24 +251,18 @@
 
         </div>
     </div>
-
+    <div class=" overlay" id="tre">
+            <div class="  load" style="display:none;"id="ert">
+                <hr/><hr/><hr/><hr/>
+              </div>
+            </div>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
 
     <script>
-    // var firebaseConfig = {
-    //     apiKey: "AIzaSyDl0VcmabczOs5yTSkvFpFk9rVFJJeMfzk",
-    //     authDomain: "vishwesh-1480f.firebaseapp.com",
-    //     databaseURL: "https://vishwesh-1480f.firebaseio.com",
-    //     projectId: "vishwesh-1480f",
-    //     storageBucket: "vishwesh-1480f.appspot.com",
-    //     messagingSenderId: "921533144339",
-    //     appId: "1:921533144339:web:284279e820fd0f1ce30ee6"
-    // };
-    // // Initialize Firebase
-    // firebase.initializeApp(firebaseConfig);
-        var firebaseConfig = {
+    
+         var firebaseConfig = {
             apiKey: "AIzaSyB9IY9MVXJzgjBHZ-JegddvmJBU18xtB8U",
             authDomain: "rentalbike-115b4.firebaseapp.com",
             databaseURL: "https://rentalbike-115b4.firebaseio.com",
@@ -247,7 +276,20 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <script>
-
+let c = 0;
+         function counter() {
+                var inter = setInterval(function () {
+                    document.getElementById('ert').style.display ="block";
+                    document.getElementById('tre').style.display ="block";
+                    console.log(c);
+                    c++; 
+                    stop(c, inter);
+                }, 30);
+        }
+        function stop(c, inter) { if (c == 230) {
+            document.getElementById('ert').style.display ="none";
+            document.getElementById('tre').style.display ="none";
+             clearInterval(inter); } }
         function validate() {
             var uname = document.getElementById('name').value;
             var unam = document.getElementById('name');
@@ -269,8 +311,10 @@
 
                         if (no.match('[+]+[9]+[1]+[0-9]{10}')) {
                             console.log("here above the function");
+                            counter();
                             sign_up();
-
+                       
+        
                         }
                         else {
                                 nim.focus();
@@ -330,8 +374,9 @@
             var no3 = document.getElementById('phone1');
             if (no1 !== "") {
                 if (no1.match('[+]+[9]+[1]+[0-9]{10}')) {
-
-                    login();
+                     counter()
+                     login();
+                
                 }
                 else {
                     no3.focus();
